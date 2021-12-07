@@ -1,0 +1,31 @@
+---
+title: "Map created by Leaflet"
+author: "Sophia"
+date: "12/7/2021"
+output: 
+        html_document:
+                 keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Summary
+
+This project is simply to create a markdown file, which has an interactive map in it. Here we use the map of New York City.
+
+## 1. load the package.
+```{r, message=FALSE, warning=FALSE}
+library(leaflet)
+```
+
+## 2. Create interactive map with randomly created 100 drop points and add clusters to the points.
+```{r}
+df <- data.frame(lat= runif(100, min=40.50, max=40.80),
+                 lng= runif(100, min=-74.24, max=-73.76))
+                
+df%>%
+        leaflet()%>%
+        addTiles()%>%
+        addMarkers(clusterOptions=markerClusterOptions())
+```
